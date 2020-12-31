@@ -1,9 +1,9 @@
 # PopulationCount
 A Generic hardware solution to a PopulationCount algorithm, written in vhdl. Testbench and diagrams included.  
     
-The funcition of this device is to count the number of "1"'s in a binary word. There are many mathmetical uses for this function, one such use is to [evaluate the mobility of pieces in given situations](https://www.chessprogramming.org/Population_Count)  
+The funcition of this device is to count the number of "1"'s in a binary word. There are many mathmetical uses for this function, one such use is to [evaluate the mobility of chess pieces in given situations](https://www.chessprogramming.org/Population_Count)  
     
-The structure is derived from a [Divide and Conquer Algorithm](https://stackoverflow.com/questions/109023/how-to-count-the-number-of-set-bits-in-a-32-bit-integer/11816547#11816547) from [Stack Overflow](https://stackoverflow.com)  
+The structure of this design is derived from a [Divide and Conquer Algorithm](https://stackoverflow.com/questions/109023/how-to-count-the-number-of-set-bits-in-a-32-bit-integer/11816547#11816547) from [Stack Overflow](https://stackoverflow.com)  
 
 ## Testing
 
@@ -24,6 +24,31 @@ Figure 1 shows three scaled simulations of the design. The first simulation is a
 </p>
 
 ## How it works
+The structure of this design is derived from a [Divide and Conquer Algorithm](https://stackoverflow.com/questions/109023/how-to-count-the-number-of-set-bits-in-a-32-bit-integer/11816547#11816547) which was written in C.  
+```C
+unsigned int count_bit(unsigned int x)
+{
+  x = (x & 0x55555555) + ((x >> 1) & 0x55555555);
+  x = (x & 0x33333333) + ((x >> 2) & 0x33333333);
+  x = (x & 0x0F0F0F0F) + ((x >> 4) & 0x0F0F0F0F);
+  x = (x & 0x00FF00FF) + ((x >> 8) & 0x00FF00FF);
+  x = (x & 0x0000FFFF) + ((x >> 16)& 0x0000FFFF);
+  return x;
+}
+``` 
+<p  align="center">
+Posted by user abcdabcd987 on Stack Overflow
+</p>
+
+To approach creating a scalable hardware equivelent, this algorithm can be broken up into 4 distinct problems
+1. Generating the Bitmasks
+2. Generating a circuit to AND two sets of bits
+3. Generating a circuit to ADD two sets of bits
+4. Generating a circuit to arithmetically SHIFT(keep the sign bit when shifting) two sets of bits
+
+Only the generation of the bitmasks will be discussed in this README, see [this link](https://github.com/BarakBinyamin/RippleCarryFA#ripplecarryfa) for a project dedicated to the addition unit.  
+
+### Generating the Bitmasks
 
 ## References & Resources
 [Divide and Conquer Algorithm](https://stackoverflow.com/questions/109023/how-to-count-the-number-of-set-bits-in-a-32-bit-integer/11816547#11816547)  
