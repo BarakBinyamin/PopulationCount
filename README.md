@@ -1,9 +1,9 @@
 # PopulationCount
-A Generic hardware solution to a PopulationCount algorithm, written in vhdl. Testbench and diagrams included.  
+A Generic hardware solution to a PopulationCount algorithm, written in VHDL. Testbench and diagrams included.  
     
 The funcition of this device is to count the number of "1"'s in a binary word. There are many mathmetical uses for this function, one such use is to [evaluate the mobility of chess pieces in given situations](https://www.chessprogramming.org/Population_Count)  
     
-The structure of this design is derived from a [Divide and Conquer Algorithm](https://stackoverflow.com/questions/109023/how-to-count-the-number-of-set-bits-in-a-32-bit-integer/11816547#11816547) from [Stack Overflow](https://stackoverflow.com)  
+The structure of this design is derived from this [Divide and Conquer Algorithm](https://stackoverflow.com/questions/109023/how-to-count-the-number-of-set-bits-in-a-32-bit-integer/11816547#11816547), from [Stack Overflow](https://stackoverflow.com)  
 
 ## Testing
 
@@ -24,7 +24,7 @@ Figure 1 shows three scaled simulations of the design. The first simulation is a
 </p>
 
 ## How it works
-The structure of this design is derived from a [Divide and Conquer Algorithm](https://stackoverflow.com/questions/109023/how-to-count-the-number-of-set-bits-in-a-32-bit-integer/11816547#11816547) which was written in C.  
+The structure of this design is derived from this [Divide and Conquer Algorithm](https://stackoverflow.com/questions/109023/how-to-count-the-number-of-set-bits-in-a-32-bit-integer/11816547#11816547), which was written in C.  
 ```C
 unsigned int count_bit(unsigned int x)
 {
@@ -48,7 +48,50 @@ To approach creating a scalable hardware equivelent, this algorithm can be broke
 
 Only the generation of the bitmasks will be discussed in this README, see [this link](https://github.com/BarakBinyamin/RippleCarryFA#ripplecarryfa) for a project dedicated to the addition unit.  
 
+Once a unit can be made for one set of these operations (one line), then these units can be sequenced together.
+<p  align="center">
+<img src=img/TwoBitSchematic2.png>
+<br>Figure 2: Schematic For a Two-bit Population Count Circuit (equivelent to one line of c code)<br>
+<img src=img/ThreeBitSchematic2.png>
+<br>Figure 3: Schematic For a Four-bit Population Count Circuit (equivelent to two lines of c code)<br>
+</p>  
+
+
 ### Generating the Bitmasks
+A good apraoch to designing hardware is to list out all possibilities of inputs with their corrosponding outputs, this can be seen below
+
+|  Mask number  |   HEX MASK   |                BIT MASK              |
+| :-----------: | :----------: |   :-------------------------------:  |   
+|       1       |  0x55555555  |    01010101010101010101010101010101  |  
+|       2       |  0x33333333  |    00110011001100110011001100110011  |
+|       3       |  0x0F0F0F0F  |    00001111000011110000111100001111  |   
+|       4       |  0x00FF00FF  |    00000000111111110000000011111111  |      
+|       5       |  0x0000FFFF  |    00000000000000001111111111111111  |
+
+What we know, and what we can gather from the table:  
+i) The length of the mask is the length of the intended X input  
+ii) The number of masks corresponds with the what power of 2 creates the length of the number, in this case 2^5 = 32   
+iii) Each mask oscillates between 2^(MASK_NUMBER-1) 1's and 0's  
+
+To programmatically assign all the arrays of the masks and their subsequent bits we can examine the generation of one mask:
+Lets examine Mask number 4: 00001111000011110000111100001111, if were to think of this bit string as an array of bits, we could examine the 12 assignment of bits. Indeces 0,1,2,3,8,9,10,11 all contain '1' values. Now We can see that this sequence is equivelent to [numbers that are congruent to {0, 1, 2, 3} mod 8](https://oeis.org/A047476).
+
+Now we can generate our 2d array of masks:
+```vhdl
+gen_masks: for MASK_NUMBER in 1 to LOG_BIT_WIDTH generate
+
+    gen_bits: for BIT in (2**LOG_BIT_WIDTH)-1 downto 0 generate
+        one_bits: if BIT mod 2**MASK_NUMBER <= 2**(MASK_NUMBER-1)-1 generate
+                mask(MASK_NUMBER-1)(BIT) <= '1';
+        end generate one_bits;
+
+    zero_bits: if BIT mod 2**MASK_NUMBER > 2**(MASK_NUMBER-1)-1 generate
+                mask(MASK_NUMBER-1)(BIT) <= '0';
+        end generate zero_bits;
+       
+    end generate gen_bits;  
+end generate gen_masks;
+```
 
 ## References & Resources
 [Divide and Conquer Algorithm](https://stackoverflow.com/questions/109023/how-to-count-the-number-of-set-bits-in-a-32-bit-integer/11816547#11816547)  
