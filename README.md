@@ -73,8 +73,8 @@ i) The length of the mask is the length of the intended X input
 ii) The number of masks corresponds with the what power of 2 creates the length of the number, in this case 2^5 = 32   
 iii) Each mask oscillates between 2^(MASK_NUMBER-1) 1's and 0's  
 
-To programmatically assign all the arrays of the masks and their subsequent bits we can examine the generation of one mask:
-Lets examine Mask number 4: 00001111000011110000111100001111, if were to think of this bit string as an array of bits, we could examine the 12 assignment of bits. Indeces 0,1,2,3,8,9,10,11 all contain '1' values. Now We can see that this sequence is equivelent to [numbers that are congruent to {0, 1, 2, 3} mod 8](https://oeis.org/A047476).
+To programmatically assign all the arrays of the masks and their subsequent bits we can examine the generation of one mask.
+Lets examine Mask number 4: 00001111000011110000111100001111, if we were to think of this bit string as an array of bits, we could look at the first 12 assignment of bits. We find that indeces 0,1,2,3,8,9,10,11 all contain '1' values. Now we can see that this sequence is equivelent to [numbers that are congruent to {0, 1, 2, 3} mod 8](https://oeis.org/A047476).
 
 Now we can generate our 2d array of masks:
 ```vhdl
