@@ -53,7 +53,7 @@ Once a unit can be made for one set of these operations (one line), then these u
 <img src=img/TwoBitSchematic2.png>
 <br>Figure 2: Schematic For a Two-bit Population Count Circuit (equivelent to one line of c code)<br>
 <img src=img/ThreeBitSchematic2.png>
-<br>Figure 3: Schematic For a Four-bit Population Count Circuit (equivelent to two lines of c code)<br>
+<br>Figure 3: Schematic For a Four-bit Population Count Circuit (equivelent to three lines of c code)<br>
 </p>  
 
 
