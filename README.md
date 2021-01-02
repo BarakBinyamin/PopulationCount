@@ -56,6 +56,8 @@ Once a unit can be made for one set of these operations (one line), then these u
 <br>Figure 3: Schematic For a Four-bit Population Count Circuit (equivelent to three lines of c code)<br>
 </p>  
 
+What can be seen seperating the OP units are registers, units used to synchronize a circuits signals to make sure that timing considerations, such as [propogation delay](https://en.wikipedia.org/wiki/Propagation_delay), have less of a chance of hindering the functionality of the design.
+
 
 ### Generating the Bitmasks
 A good apraoch to designing hardware is make a table of the information you know to more easily derive conclusions from:
