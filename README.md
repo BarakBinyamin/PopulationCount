@@ -58,7 +58,7 @@ Once a unit can be made for one set of these operations (one line), then these u
 
 
 ### Generating the Bitmasks
-A good apraoch to designing hardware is to list out all possibilities of inputs with their corrosponding outputs, this can be seen below
+A good apraoch to designing hardware is make a table of the information you know to more easily derive conclusions from:
 
 |  Mask number  |   HEX MASK   |                BIT MASK              |
 | :-----------: | :----------: |   :-------------------------------:  |   
