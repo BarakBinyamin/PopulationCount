@@ -89,7 +89,7 @@ gen_masks: for MASK_NUMBER in 1 to LOG_BIT_WIDTH generate
                 mask(MASK_NUMBER-1)(BIT) <= '1';
         end generate one_bits;
 
-    zero_bits: if BIT mod 2**MASK_NUMBER > 2**(MASK_NUMBER-1)-1 generate
+        zero_bits: if BIT mod 2**MASK_NUMBER > 2**(MASK_NUMBER-1)-1 generate
                 mask(MASK_NUMBER-1)(BIT) <= '0';
         end generate zero_bits;
        
