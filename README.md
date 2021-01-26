@@ -76,7 +76,9 @@ ii) The number of masks corresponds with the what power of 2 creates the length 
 iii) Each mask oscillates between 2^(MASK_NUMBER-1) 1's and 0's  
 
 To programmatically assign all the arrays of the masks and their subsequent bits we can examine the generation of one mask.
-Lets examine Mask number 4: 00001111000011110000111100001111, if we were to think of this bit string as an array of bits, we could look at the first 12 assignment of bits. We find that indeces 0,1,2,3,8,9,10,11 all contain '1' values. Now we can see that this sequence is equivelent to [numbers that are congruent to {0, 1, 2, 3} mod 8](https://oeis.org/A047476).
+Lets examine Mask number 4: 00001111000011110000111100001111     
+For the first 12 bits (from right to left), we find that indeces 0,1,2,3,8,9,10,11 all contain '1' values.     
+A good apraoch to finding the relationship between numbers in an integer sequence is to look it up. The Online Encyclopedia of Integer Sequences is a great reference. On there, we find that this sequence is equivelent to [numbers that are congruent to {0, 1, 2, 3} mod 8](https://oeis.org/A047476).  
 
 Now we can generate our 2d array of masks:
 ```vhdl
@@ -97,6 +99,7 @@ end generate gen_masks;
 
 ## References & Resources
 [Divide and Conquer Algorithm](https://stackoverflow.com/questions/109023/how-to-count-the-number-of-set-bits-in-a-32-bit-integer/11816547#11816547)  
+[The Online Encyclopedia of Integer Sequences](https://oeis.org)   
 Xilinx Vivado  
 VHDL  
   
