@@ -60,7 +60,7 @@ What can be seen seperating the OP units are registers, units used to synchroniz
 
 
 ### Generating the Bitmasks
-A good apraoch to designing hardware is make a table of the information you know to more easily derive conclusions from:
+A good apraoch to designing hardware is to lay out known information into a table, to more easily derive conclusions from:
 
 |  Mask number  |   HEX MASK   |                BIT MASK              |
 | :-----------: | :----------: |   :-------------------------------:  |   
