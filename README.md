@@ -40,7 +40,7 @@ unsigned int count_bit(unsigned int x)
 Posted by user abcdabcd987 on Stack Overflow
 </p>
 
-To approach creating a scalable hardware equivelent, this algorithm can be broken up into 4 distinct problems
+To approach creating a scalable hardware equivalent, this algorithm can be broken up into 4 distinct problems:
 1. Generating the Bitmasks
 2. Generating a circuit to AND two sets of bits
 3. Generating a circuit to ADD two sets of bits
@@ -56,11 +56,10 @@ Once a unit can be made for one set of these operations (one line), then these u
 <br>Figure 3: Schematic For a Four-bit Population Count Circuit (equivelent to three lines of c code)<br>
 </p>  
 
-What can be seen seperating the OP units are registers, units used to synchronize a circuits signals to make sure that timing considerations, such as [propogation delay](https://en.wikipedia.org/wiki/Propagation_delay), have less of a chance of hindering the functionality of the design.
-
+This design uses registers between the OP units to synchronize the circuits signals and limit timing issues such as [propogation delay](https://en.wikipedia.org/wiki/Propagation_delay).
 
 ### Generating the Bitmasks
-A good apraoch to designing hardware is to lay out known information into a table, to more easily derive conclusions from:
+Let's inspect if there is a pattern in the bitmasks:
 
 |  Mask number  |   HEX MASK   |                BIT MASK              |
 | :-----------: | :----------: |   :-------------------------------:  |   
@@ -70,15 +69,20 @@ A good apraoch to designing hardware is to lay out known information into a tabl
 |       4       |  0x00FF00FF  |    00000000111111110000000011111111  |      
 |       5       |  0x0000FFFF  |    00000000000000001111111111111111  |
 
-What we know, and what we can gather from the table:  
-i) The length of the mask is the length of the intended X input  
-ii) The number of masks corresponds with the what power of 2 creates the length of the number, in this case 2^5 = 32   
-iii) Each mask oscillates between 2^(MASK_NUMBER-1) 1's and 0's  
+From the table, we can see:  
+1. The length of the mask is the length of the intended X input  
+2. The number of masks corresponds with the what power of 2 creates the length of the number, in this case 2^5 = 32   
+3. Each mask oscillates between 2^(MASK_NUMBER-1) 1's and 0's
 
-To programmatically assign all the arrays of the masks and their subsequent bits we can examine the generation of one mask.
-Lets examine Mask number 4: 00001111000011110000111100001111     
-For the first 12 bits (from right to left), we find that indeces 0,1,2,3,8,9,10,11 all contain '1' values.     
-A good apraoch to finding the relationship between numbers in an integer sequence is to look it up. The Online Encyclopedia of Integer Sequences is a great reference. On there, we find that this sequence is equivelent to [numbers that are congruent to {0, 1, 2, 3} mod 8](https://oeis.org/A047476).  
+Lets examine Mask number 3:
+
+    0000 1111 0000 1111 0000 1111 0000 1111     
+    
+For the first 12 bits (from right to left), we find that indeces 0,1,2,3,8,9,10,11 all contain '1' values.  
+
+Searching this sequence on the Online Encyclopedia of Integer Sequences, we find that it is equivelent to [numbers that are congruent to {0, 1, 2, 3} mod 8](https://oeis.org/A047476).
+
+With a little more inspection the general rule looks to be that the ones are every index in which **index MOD 2^(MASK_NUMBER) <= 2^(MASK_NUMBER-1)-1**
 
 Now we can generate our 2d array of masks:
 ```vhdl
@@ -97,9 +101,8 @@ gen_masks: for MASK_NUMBER in 1 to LOG_BIT_WIDTH generate
 end generate gen_masks;
 ```
 
-## References & Resources
-[Divide and Conquer Algorithm](https://stackoverflow.com/questions/109023/how-to-count-the-number-of-set-bits-in-a-32-bit-integer/11816547#11816547)  
-[The Online Encyclopedia of Integer Sequences](https://oeis.org)   
-Xilinx Vivado  
-VHDL  
+## Resources
+- [Divide and Conquer Algorithm](https://stackoverflow.com/questions/109023/how-to-count-the-number-of-set-bits-in-a-32-bit-integer/11816547#11816547)  
+- [The Online Encyclopedia of Integer Sequences](https://oeis.org)   
+- [Xilinx Vivado](https://www.xilinx.com/support/download.html)    
   
