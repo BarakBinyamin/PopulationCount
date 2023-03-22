@@ -1,9 +1,9 @@
 # PopulationCount
 A Generic hardware solution to a PopulationCount algorithm, written in VHDL. Testbench and diagrams included.  
     
-The funcition of this device is to count the number of "1"'s in a binary word. There are many mathmetical uses for this function, one such use is to [evaluate the mobility of chess pieces in given situations](https://www.chessprogramming.org/Population_Count)  
+This device counts the number of "1"'s in a binary word. Populations count has many applications, one interesting application is [evaluating the mobility of chess pieces in given situations](https://www.chessprogramming.org/Population_Count)  
     
-The structure of this design is derived from this [Divide and Conquer Algorithm](https://stackoverflow.com/questions/109023/how-to-count-the-number-of-set-bits-in-a-32-bit-integer/11816547#11816547), from [Stack Overflow](https://stackoverflow.com)  
+The structure of this design is was made using this [Divide and Conquer Algorithm](https://stackoverflow.com/questions/109023/how-to-count-the-number-of-set-bits-in-a-32-bit-integer/11816547#11816547)
 
 ## Testing
 
