@@ -110,10 +110,12 @@ begin
     for i in 0 to test_vector_array2'length-1 loop
 		wait until clk='0';                         -- wait until falling edge
 		Xtwo  <= test_vector_array2(i).Xin;
-        wait for clkDelay;                          -- wait one clock cycle
+        wait for 5*clkDelay;
+        wait until clk='1';                         -- wait until falling edge
         assert COUNTtwo = test_vector_array2(i).count
         report "COUNTtwo is not correct in test " & integer'image(i) severity error;
 	end loop;
+    
    
     -- End of tests
 	wait until clk='0';
