@@ -172,4 +172,4 @@ Both were actually really fun and I'm glad I got the chance to build something a
 - [Xilinx Vivado](https://www.xilinx.com/support/download.html)    
 - [EDAplayground documentation](https://eda-playground.readthedocs.io/en/latest/)
 - [Nanland: Some Great General FPGA Tutorials](https://nandland.com/fpga-101/)
-- [What's in an FPGA?](https://digilent.com/blog/structure-of-an-fpga/#:~:text=An%20FPGA%20in%20its%20most,LUTs)%20and%20flip%2Dflops.)
+- [What's in an FPGA?](https://digilent.com/blog/structure-of-an-fpga/)
