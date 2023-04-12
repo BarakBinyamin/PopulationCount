@@ -171,3 +171,4 @@ Both were actually really fun and I'm glad I got the chance to build something a
 - [The Online Encyclopedia of Integer Sequences](https://oeis.org)   
 - [Xilinx Vivado](https://www.xilinx.com/support/download.html)    
 - [EDAplayground documentation](https://eda-playground.readthedocs.io/en/latest/)
+- [Nanland: Some Great General FPGA Tutorials](https://nandland.com/fpga-101/)
