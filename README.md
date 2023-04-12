@@ -38,6 +38,10 @@ The source is shared on [EDAplayground](https://edaplayground.com/x/PP6b), where
         -  **Compile Options**: 2019 -o
     - [ x ] Open EPWave after run
 
+When the EPwave opens:
+ -  Select **Get Signals** on the top left, a panel should pop up
+ -  Select **count_onesTB** under **scope** on the left
+ -  Select **Append All** on the bottom right
 
 For more information on how to use EDAplayground please refer to the [EDAplayground documentation](https://eda-playground.readthedocs.io/en/latest/)
 
