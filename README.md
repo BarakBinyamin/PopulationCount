@@ -1,30 +1,65 @@
 # PopulationCount
 A Generic hardware solution to a PopulationCount algorithm, written in VHDL. Testbench and diagrams included.  
+
+- [Description](#description)
+- [Developers info](#developers)
+    - [Quickstart](#quickstart)
+    - [Project Directory](#project-directory)
+    - [Theory](#theory)
+    - [Testing](#testing)
+- [Motivation](#motivation)
+- [Resources](#resources)
+
+# Description
+This device counts the number of "1"'s in a binary word, it has [many applications](https://vaibhavsagar.com/blog/2019/09/08/popcount/#:~:text=Most%20CPU%20architectures%20in%20use,bits%20in%20a%20machine%20word) including crytography and error detection/correction
     
-This device counts the number of "1"'s in a binary word. Populations count has many applications, one interesting application is [evaluating the mobility of chess pieces in given situations](https://www.chessprogramming.org/Population_Count)  
-    
-The structure of this design is was made using this [Divide and Conquer Algorithm](https://stackoverflow.com/questions/109023/how-to-count-the-number-of-set-bits-in-a-32-bit-integer/11816547#11816547)
+The structure of this design was inspired by a [Divide and Conquer Algorithm](https://stackoverflow.com/questions/109023/how-to-count-the-number-of-set-bits-in-a-32-bit-integer/11816547#11816547) explained on stack overflow
 
-## Testing
+Here is a waveform showing what it does:
 
-While the following images show functionality, VHDL Assert statements were used to verify that all of the tests output matched expected output.  
-  
-[see the testbench](https://github.com/BarakBinyamin/PopulationCount/tree/main/tst), [download testbench](https://barakbinyamin.github.io/PopulationCount/tst/count_onesTB.vhd)  
-[see the code](https://github.com/BarakBinyamin/PopulationCount/tree/main/srcs), download [Full_adder](https://barakbinyamin.github.io/PopulationCount/srcs/FullAdder.vhd), download [RippleCarryFA](https://barakbinyamin.github.io/PopulationCount/srcs/RippleCarryFA.vhd), download [andN.vhd](https://barakbinyamin.github.io/PopulationCount/srcs/andN.vhd), download [
-Reg.vhd](https://barakbinyamin.github.io/PopulationCount/srcs/Reg.vhd), download [
-aslrN.vhd](https://barakbinyamin.github.io/PopulationCount/srcs/aslrN.vhd), download [
-count_ones.vhd](https://barakbinyamin.github.io/PopulationCount/srcs/count_ones.vhd), download [op.vhd](https://barakbinyamin.github.io/PopulationCount/srcs/op.vhd)  
-
- 
 <p  align="center">
-<img src=img/tests1-3.png>   
-<br>Figure 1: Behavioral Simulation Waveform  
-    
-Figure 1 shows three scaled simulations of the design. The first simulation is a design for 2 bits, the second is a design for 4 bits, and the third simulation is a design for 32 bits.
+    <img src=img/tests1-3.png>   
+    <br>
+    Figure 1: Behavioral Simulation Waveform  
 </p>
 
-## How it works
-The structure of this design is derived from this [Divide and Conquer Algorithm](https://stackoverflow.com/questions/109023/how-to-count-the-number-of-set-bits-in-a-32-bit-integer/11816547#11816547), which was written in C.  
+You can find an explanation of this waveform in the [testing section](#testing)
+
+
+# Developers
+## Quickstart
+The source is shared on [EDAplayground](https://edaplayground.com/x/PP6b), where it's ready for simulation (sign in and hit the run button). A waveform should pop up after the simulation
+
+**Be sure to check the settings on the left panel**, they should look like:
+- **Testbench + Design**: VHDL
+- **Top entity**: count_onesTB
+- **Tools and Simulators**
+    - Aldec Rivera Pro
+        -  **Compile Options**: 2019 -o
+    - [ x ] Open EPWave after run
+
+
+For more information on how to use EDAplayground please refer to the [EDAplayground documentation](https://eda-playground.readthedocs.io/en/latest/)
+
+## Project Directory
+| Name                                   | Purpose                                       | 
+| :--                                    | :--                                           |
+|[img](backend)                          | Screen captures showing design & functionality|
+|[src](library)                          | The source code                               |
+|[tst](shortcuts)                        | Tests                                         |
+
+Components Available For Individual Download:
+- [Testbench](https://barakbinyamin.github.io/PopulationCount/tst/count_onesTB.vhd)  
+- [Full_adder](https://barakbinyamin.github.io/PopulationCount/srcs/FullAdder.vhd)
+- [RippleCarryFA](https://barakbinyamin.github.io/PopulationCount/)
+- [andN.vhd](https://barakbinyamin.github.io/PopulationCount/srcs/andN.vhd)
+- [Reg.vhd](https://barakbinyamin.github.io/PopulationCount/srcs/Reg.vhd)
+- [aslrN.vhd](https://barakbinyamin.github.io/PopulationCount/srcs/aslrN.vhd)
+- [count_ones.vhd](https://barakbinyamin.github.io/PopulationCount/srcs/count_ones.vhd)
+- [op.vhd](https://barakbinyamin.github.io/PopulationCount/srcs/op.vhd)  
+
+## Theory 
+The structure of this design was inspired by a [Divide and Conquer Algorithm](https://stackoverflow.com/questions/109023/how-to-count-the-number-of-set-bits-in-a-32-bit-integer/11816547#11816547) explained on stack overflow, written in C 
 ```C
 unsigned int count_bit(unsigned int x)
 {
@@ -101,8 +136,34 @@ gen_masks: for MASK_NUMBER in 1 to LOG_BIT_WIDTH generate
 end generate gen_masks;
 ```
 
+## Testing
+Tests for VHDL designs are usually refered to as a "Testbench". It can be thought of as a wrapper component used to drive the inputs and tap the outputs of the Unit Under Test (UUT)
+
+Then we can inspect the inputs and outputs using simulation tools available through Vivado or EDAPlayground
+
+We can also automatically check if the outputs match expected values at the right time with VHDL assert statements
+
+<p  align="center">
+    <img src=img/tests1-3.png>   
+    <br>
+    Figure 1: Behavioral Simulation Waveform  
+</p>
+
+Figure 1 shows three scaled simulations of the design. 
+- A 2 bit unit
+- A 4 bit unit
+- A 32 bit unit
+
+The test **inputs**  are labeled Xone-Xthree  
+The test **outputs** are labeled COUNTone-COUNTthree
+
+# Motivation
+I was looking for an hardware/software internship in 2018 and my brother [@ErezBinyamin](https://github.com/ErezBinyamin) offered to share my resume with his work on the condition I could pass two challanges. One was solving [the first crackme challange](https://crackmes.one/crackme/5c9126c033c5d46ecd37c8f4) using [Ghidra](https://ghidra-sre.org/), and the other was to devlop a harware equivalent of [the population count  algorithm](https://stackoverflow.com/questions/109023/how-to-count-the-number-of-set-bits-in-a-32-bit-integer/11816547#11816547) from stack overflow
+
+Both were actually really fun and I'm glad I got the chance to build something and learn along the way
+
 ## Resources
 - [Divide and Conquer Algorithm](https://stackoverflow.com/questions/109023/how-to-count-the-number-of-set-bits-in-a-32-bit-integer/11816547#11816547)  
 - [The Online Encyclopedia of Integer Sequences](https://oeis.org)   
 - [Xilinx Vivado](https://www.xilinx.com/support/download.html)    
-  
+- [EDAplayground documentation](https://eda-playground.readthedocs.io/en/latest/)
