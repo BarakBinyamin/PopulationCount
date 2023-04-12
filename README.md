@@ -139,9 +139,9 @@ end generate gen_masks;
 ## Testing
 Tests for VHDL designs are usually refered to as a "Testbench". It can be thought of as a wrapper component used to drive the inputs and tap the outputs of the Unit Under Test (UUT)
 
-Then we can inspect the inputs and outputs using simulation tools available through Vivado or EDAPlayground
+We can simulate the testbench and inspect the inputs and outputs using tools available through Vivado or EDAPlayground
 
-We can also automatically check if the outputs match expected values at the right time with VHDL assert statements
+Designs can get large and visual inpection of a waveform can become time consuming. Thankfully a testbench can automatically check if the outputs match expected values at the right time with assert statements. If the outputs don't match expectations, we can raise alerts which will show up in the logs of the simulation tool
 
 <p  align="center">
     <img src=img/tests1-3.png>   
