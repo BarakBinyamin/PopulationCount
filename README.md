@@ -48,9 +48,9 @@ For more information on how to use EDAplayground please refer to the [EDAplaygro
 ## Project Directory
 | Name                                   | Purpose                                       | 
 | :--                                    | :--                                           |
-|[img](backend)                          | Screen captures showing design & functionality|
-|[src](library)                          | The source code                               |
-|[tst](shortcuts)                        | Tests                                         |
+|[img](img)                              | Screen captures showing design & functionality|
+|[src](src)                              | The source code                               |
+|[tst](tst)                              | Tests                                         |
 
 Components Available For Individual Download:
 - [Testbench](https://barakbinyamin.github.io/PopulationCount/tst/count_onesTB.vhd)  
