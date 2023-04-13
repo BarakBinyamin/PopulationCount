@@ -57,7 +57,7 @@ architecture Behavioral of count_onesTB is
     constant test_vector_array3 : test_array3 := (
         (Xin => x"00000000",count => x"00000000"), 
         (Xin => x"00000001",count => x"00000001"), 
-        (Xin => x"10101010",count => x"10101010")
+        (Xin => x"10101010",count => x"00000004")
     );
      
      
