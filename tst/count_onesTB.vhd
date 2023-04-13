@@ -37,14 +37,27 @@ architecture Behavioral of count_onesTB is
     -- Test 2 Answer Sheet
     type test_vector2 is record
             Xin	   : std_logic_vector((4)-1 downto 0);
-            count  : std_logic_vector((3)-1 downto 0);
+            count  : std_logic_vector((4)-1 downto 0);
     end record;
 
     type test_array2 is array (natural range <>) of test_vector2;
     constant test_vector_array2 : test_array2 := (
-        (Xin => "0000",count => "000"), -- 0  should have no    ones
-        (Xin => "1010",count => "010"), -- 10 should have one   ones
-        (Xin => "1101",count => "011")  -- 13 should have three ones
+        (Xin => "0000",count => "0000"), -- 0  should have no    ones
+        (Xin => "1010",count => "0010"), -- 10 should have one   ones
+        (Xin => "1101",count => "0011")  -- 13 should have three ones
+    );
+    
+    -- Test 3 Answer Sheet
+    type test_vector3 is record
+            Xin	   : std_logic_vector((32)-1 downto 0);
+            count  : std_logic_vector((32)-1 downto 0);
+    end record;
+
+    type test_array3 is array (natural range <>) of test_vector3;
+    constant test_vector_array3 : test_array3 := (
+        (Xin => x"00000000",count => x"00000000"), 
+        (Xin => x"00000001",count => x"00000001"), 
+        (Xin => x"10101010",count => x"10101010")
     );
      
      
@@ -106,16 +119,28 @@ begin
         report "COUNTone is not correct in test " & integer'image(i) severity error;
 	end loop;
     
-    -- Test 2: Note these tests are running in parallel
+    -- Test 2: Note these tests are running sequentially
     for i in 0 to test_vector_array2'length-1 loop
-		wait until clk='0';                         -- wait until falling edge
+		wait until clk='0';                        
 		Xtwo  <= test_vector_array2(i).Xin;
-        wait for 5*clkDelay;
-        wait until clk='1';                         -- wait until falling edge
-        assert COUNTtwo = test_vector_array2(i).count
+        wait until clk='0';                         
+        wait until clk='0';                         
+		assert  COUNTtwo = test_vector_array2(i).count
         report "COUNTtwo is not correct in test " & integer'image(i) severity error;
 	end loop;
     
+     -- Test 3:
+    for i in 0 to test_vector_array3'length-1 loop
+		wait until clk='0';                        
+		Xthree  <= test_vector_array3(i).Xin;
+        wait until clk='0';                         
+        wait until clk='0';
+        wait until clk='0';
+        wait until clk='0';
+        wait until clk='0';
+		assert  COUNTthree = test_vector_array3(i).count
+        report "COUNTthree is not correct in test " & integer'image(i) severity error;
+	end loop;
    
     -- End of tests
 	wait until clk='0';
