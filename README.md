@@ -1,5 +1,5 @@
 # PopulationCount
-A Generic hardware solution to a PopulationCount algorithm, written in VHDL. Testbench and diagrams included.  
+A Generic hardware solution to a PopulationCount algorithm, written in VHDL. Testbench and diagrams included
 
 - [Description](#description)
 - [Developers info](#developers)
