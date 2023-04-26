@@ -11,7 +11,7 @@ A Generic hardware solution to a PopulationCount algorithm, written in VHDL. Tes
 - [Resources](#resources)
 
 # Description
-This device counts the number of "1"'s in a binary word, it has [many applications](https://vaibhavsagar.com/blog/2019/09/08/popcount/#:~:text=Most%20CPU%20architectures%20in%20use,bits%20in%20a%20machine%20word) including crytography and error detection/correction
+This device counts the number of "1"'s in a binary word, it has [many applications](https://vaibhavsagar.com/blog/2019/09/08/popcount/#:~:text=Most%20CPU%20architectures%20in%20use,bits%20in%20a%20machine%20word) including crytography and error detection/correction in communications
     
 The structure of this design was inspired by a [Divide and Conquer Algorithm](https://stackoverflow.com/questions/109023/how-to-count-the-number-of-set-bits-in-a-32-bit-integer/11816547#11816547) explained on stack overflow
 
