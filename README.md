@@ -162,7 +162,7 @@ The test **inputs**  are labeled Xone-Xthree
 The test **outputs** are labeled COUNTone-COUNTthree
 
 # Motivation
-I was looking for an hardware/software internship in 2018 and my brother [@ErezBinyamin](https://github.com/ErezBinyamin) offered to share my resume with his work on the condition I could pass two challanges. One was solving [the first crackme challange](https://crackmes.one/crackme/5c9126c033c5d46ecd37c8f4) using [Ghidra](https://ghidra-sre.org/), and the other was to devlop a harware equivalent of [a population count  algorithm](https://stackoverflow.com/questions/109023/how-to-count-the-number-of-set-bits-in-a-32-bit-integer/11816547#11816547) from stack overflow
+I was looking for a hardware/software internship in 2018 and my brother [@ErezBinyamin](https://github.com/ErezBinyamin) offered to share my resume with his work on the condition I could pass two challanges. One was solving [the first crackme challange](https://crackmes.one/crackme/5c9126c033c5d46ecd37c8f4) using [Ghidra](https://ghidra-sre.org/), and the other was to devlop a harware equivalent of [a population count  algorithm](https://stackoverflow.com/questions/109023/how-to-count-the-number-of-set-bits-in-a-32-bit-integer/11816547#11816547) from stack overflow
 
 Both were actually really fun and I'm glad I got the chance to build something and learn along the way
 
