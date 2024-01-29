@@ -28,6 +28,7 @@ You can find an explanation of this waveform in the [testing section](#testing)
 
 # Developers
 ## Quickstart
+### EDA
 The source is shared on [EDAplayground](https://edaplayground.com/x/PP6b), where it's ready for simulation (sign in and hit the run button). A waveform should pop up after the simulation
 
 **Be sure to check the settings on the left panel**, they should look like:
@@ -44,6 +45,16 @@ When the EPwave opens:
  -  Select **Append All** on the bottom right
 
 For more information on how to use EDAplayground please refer to the [EDAplayground documentation](https://eda-playground.readthedocs.io/en/latest/)
+
+### CLI_HDL
+Compile VHDL code using `ghdl` from the command line and simulate using gtkwave.
+
+1. Install [ghdl](https://github.com/ErezBinyamin/Scripts/blob/master/installers/ghdl.sh)
+2. Structure your source code in 'work' into hirearchical directories
+3. Use `make` to compile your code
+4. Use `TESTBENCH=tst/... make test` to view a Gtkwave simulation like this one
+
+![Gtkwave popcount](img/popcount_tb.png)
 
 ## Project Directory
 | Name                                   | Purpose                                       | 
