@@ -145,9 +145,9 @@ begin
     -- End of tests
 	wait until clk='0';
 
-    assert false
-        report "Testbench Concluded"
-        severity failure;
+    --assert false
+    --    report "Testbench Concluded"
+    --    severity failure;
 end process;
 
 end Behavioral;

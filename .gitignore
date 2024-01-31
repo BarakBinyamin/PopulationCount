@@ -1,0 +1,16 @@
+# TMP files
+*.tmp
+*.swp
+
+#GHDL Syntax check output
+*.cf
+
+#GHDL generated GTKWAVE file
+*.vcd
+*.fst
+
+# Object files - empty placeholders
+*.o
+
+# Ignore report direcory
+report/.*
